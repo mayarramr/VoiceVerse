@@ -1,0 +1,49 @@
+.textBg {
+  background: linear-gradient(to bottom right, #B8B8DC, #5756d5 , #5756d5);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+}
+.InputContainer {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to right,#B8B8DC, #5756d5);
+  border-radius: 30px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.075);
+}
+
+.input {
+  width: 735px;
+  height: 40px;
+  border: none;
+  outline: none;
+  caret-color: #5756d5;
+  background-color: #212121;
+  border-radius: 30px;
+  padding-left: 15px;
+  letter-spacing: 0.8px;
+  color: white;
+}
+
+
+.input::placeholder{
+      font-size: 17px;
+}
+
+.customBorder{
+   padding: 1rem;
+  position: relative;
+  background: linear-gradient(to right, #e3e1e2, #5756d5);
+  padding: 3px;
+  border-radius: 10%;
+}
+.borderModule {
+  background: #222;
+  color: white;
+  padding: 2rem 0px;
+  border-radius: 10%;
+}
