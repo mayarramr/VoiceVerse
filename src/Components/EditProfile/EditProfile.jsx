@@ -12,7 +12,7 @@ export default function EditProfile() {
     const [inputHandled, setInputHandled] = useState(false);
     const [usernameHandled, setusernameHandled] = useState(false)
     const [loading, setloading] = useState(false)
-    const inputRef = useRef()
+    const imageInputRef = useRef()
 
     const handleInput = async (event) => {
         await handleImageChange(event);
@@ -40,14 +40,14 @@ export default function EditProfile() {
             let { data } = await axios.patch(`https://voice-verse-livid.vercel.app/auth/username/edit`, values,
                 {
                     headers: {
-                        "token": `${bearerToken}${headers.token}`
+                        "token": `${bearerToken}${localStorage.getItem("userToken")}`
                     }
                 })
-            console.log(data);
+            // console.log(data);
             fetchUserData()
             setusernameHandled(false)
         } catch (error) {
-            console.log(error);
+            // console.log(error);
         }
     }
     let changeUsernameFormik = useFormik({
@@ -61,7 +61,7 @@ export default function EditProfile() {
 
     return <>
 
-        <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal fade" id="exampleModalToggle3" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3" tabIndex="-1">
             <div className="modal-dialog modal-dialog-centered">
                 <div className="modal-content bgDark">
                     <div className="modal-header border-0">
@@ -78,12 +78,12 @@ export default function EditProfile() {
                                     <img src={newImage} className="rounded-pill" style={{ width: '80px', height: '80px' }} />
 
                                     <div className={`${Style.profile}`}>
-                                        <button onClick={() => inputRef.current.click()} className="position-absolute start-50 bg-white border-1 border bottom-0 btn p-1 textBlue rounded-5 d-flex align-items-center justify-content-center" style={{ width: "35px", height: "35px" }}>
+                                        <button onClick={() => imageInputRef.current.click()} className="position-absolute start-50 bg-white border-1 border bottom-0 btn p-1 textBlue rounded-5 d-flex align-items-center justify-content-center" style={{ width: "35px", height: "35px" }}>
                                             <FaCamera className="textBlue fs-5" />
                                         </button>
                                     </div>
                                 </div>
-                                <input ref={inputRef} onChange={handleInput} type="file" style={{ display: 'none' }} />
+                                <input ref={imageInputRef} onChange={handleInput} type="file" style={{ display: 'none' }} />
                                 {loading ?
                                     <button className="btn bgBlue my-3">
                                         <Bars

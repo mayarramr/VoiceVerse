@@ -34,8 +34,6 @@ body{
   .borderBlueEnd {
     border-right: #5756d5 2px solid !important;
   }
-
-  
   .textBlue {
     color: #5756d5 !important;
   }
@@ -54,4 +52,7 @@ body{
   }
 .pointer{
   cursor: pointer;
+}
+.index{
+  z-index: 99999;
 }

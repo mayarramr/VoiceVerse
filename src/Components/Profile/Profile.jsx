@@ -20,20 +20,19 @@ export default function Profile() {
 
 
   return <>
-   <div className={`${!isOpen ? "col-md-11" : "col-md-10" }`}>
-   <div className="bgDark vh-100 pt-5">
+    <div className="bgDark vh-100 pt-5">
       <div className="mt-5 ">
         <div className="row justify-content-center">
           <div className="col-md-4 d-flex justify-content-evenly align-items-center ">
             <div className="position-relative">
-              <img src={newImage} className="rounded-pill border borderBlue border-4" style={{ width: '170px', height: '170px' }} />
+              <img src={newImage} className="rounded-pill  borderBlue border-4" style={{ width: '170px', height: '170px' }} />
               <div>
               </div>
             </div>
             <div className="text-white">
               <h3>{userName}</h3>
               <p>{email}</p>
-              <button type="button" className="btn text-white bgBlue mx-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              <button type="button" className="btn text-white bgBlue mx-3" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal">
                 Edit Profile
               </button>
               <button type="button" className="btn border-danger text-danger" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">
@@ -55,14 +54,12 @@ export default function Profile() {
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
+          <EditProfile />
         </div>
-        <EditProfile />
+        <Favorites />
       </div>
-      <Favorites />
     </div>
-   </div>
   </>
 }

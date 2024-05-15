@@ -1,7 +1,3 @@
-body{
-  overflow-y: hidden;
-    /* background-color: #212121 !important; */
-}
 .textBg {
   background: linear-gradient(to bottom right, #B8B8DC, #5756d5 , #5756d5);
   -webkit-background-clip: text;
@@ -38,7 +34,16 @@ body{
       font-size: 17px;
 }
 
- .scrollbar {
-  scrollbar-width: none;
-  overflow-y: scroll;
+.customBorder{
+   padding: 1rem;
+  position: relative;
+  background: linear-gradient(to right, #e3e1e2, #5756d5);
+  padding: 3px;
+  border-radius: 10%;
+}
+.borderModule {
+  background: #222;
+  color: white;
+  padding: 2rem 0px;
+  border-radius: 10%;
 }

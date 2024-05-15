@@ -7,9 +7,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import email from '../../Assets/Images/Email campaign-amico.png'
 import { ImSpinner6 } from 'react-icons/im';
 import { ColorRing } from 'react-loader-spinner';
+import { useMediaQuery } from 'react-responsive';
 
 export default function ForgetPassword() {
-
+    const isScreenSmall = useMediaQuery({minWidth:0 , maxWidth:768})
     const navigate = useNavigate()
     const [error, seterror] = useState(null)
     const [loading, setloading] = useState(null)
@@ -46,12 +47,12 @@ export default function ForgetPassword() {
 
 
     return <>
-        <div className="bgDark h-100 w-100 position-fixed pt-5">
+        <div className="bgDark vh-100 pt-5">
             <div className="container d-flex flex-column justify-content-center align-items-center">
                 <div className="w-75 d-flex justify-content-center">
-                    <img src={email} className="w-25 my-4" alt="" />
+                    <img src={email} className={`${isScreenSmall ? "w-50" : "w-25"} my-4`} alt="" />
                 </div>
-                <div className="row w-50 bgLightDark p-5 rounded-5">
+                <div className={`${isScreenSmall ? "w-100 py-5 px-2" : "w-50 px-5"} row bgLightDark rounded-5`}>
                     <div className="textBlue text-center">
                         <h1 className="textBlue fw-bold text-center">Forget Password ?</h1>
                         <h5 className="my-3">Please enter the email address linked to your account</h5>

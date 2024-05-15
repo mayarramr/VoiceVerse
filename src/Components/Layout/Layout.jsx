@@ -5,6 +5,7 @@ import Footer from './Footer/Footer'
 import { Outlet } from 'react-router-dom'
 import { Offline } from 'react-detect-offline'
 import { Toaster } from 'react-hot-toast'
+import 'react-toastify/dist/ReactToastify.css'
 import { MdOutlineWifiOff } from "react-icons/md";
 import { userContext } from '../../Context/UserContext'
 
@@ -16,16 +17,14 @@ export default function Layout() {
         }
     }, [])
     return <>
-        <div className="d-flex">
             <Navbar />
             <Outlet></Outlet>
             <Toaster />
-        </div>
-        <div>
-            <Offline>
-                <div className="network"><MdOutlineWifiOff /> You're Offline</div>
-            </Offline>
-        </div>
-        <Footer />
+            <div>
+                <Offline>
+                    <div className="network"><MdOutlineWifiOff /> You're Offline</div>
+                </Offline>
+            </div>
+            <Footer />
     </>
 }
