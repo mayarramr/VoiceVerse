@@ -47,7 +47,7 @@ body{
   }
   ::placeholder{
     color: rgb(153, 153, 153) !important;
-    font-size: 13px;
+    /* font-size: 13px; */
     padding: 0px 0px 3px 10px !important;
   }
 .pointer{

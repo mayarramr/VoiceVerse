@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 import { BsApple } from "react-icons/bs";
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
 import { useMediaQuery } from 'react-responsive'
+import navlogo from '../../Assets/Images/logo.png'
 
 export default function SignUp() {
     const [error, seterror] = useState('')
@@ -17,7 +18,7 @@ export default function SignUp() {
 
     async function submitRegister(values) {
         try {
-            const { data } = await axios.post(`https://voice-verse-livid.vercel.app/auth/register`, values);
+            const { data } = await axios.post(`http://ec2-51-20-141-173.eu-north-1.compute.amazonaws.com/auth/register`, values);
             console.log(data);
             setactivateMsg(data.message)
         } catch (err) {
@@ -28,7 +29,7 @@ export default function SignUp() {
     let validateSchema = Yup.object({
         userName: Yup.string().min(3, 'Username must be more than 3 letters').max(15, 'Username can not be more than 15 letters').required('Username is required'),
         email: Yup.string().email('Email is invalid').required('Email is required'),
-        password: Yup.string().matches(/^[A-Z].{7,}$/, 'Password must starts with an uppercase letter and be at least 8 characters long').required('Password is required'),
+        password: Yup.string().matches(/^(?=.*[!@#$%^&*(),.?":{}|<>])[A-Z][A-Za-z\d!@#$%^&*(),.?":{}|<>]{7,}$/, 'Password must starts with an uppercase letter and be at least 8 characters long').required('Password is required'),
         cPassword: Yup.string().oneOf([Yup.ref("password")], `Passwords don't match`).required('You must confirm password')
     })
 
@@ -46,8 +47,8 @@ export default function SignUp() {
 
         <div className="">
             <div className="row vh-100" >
-                <div className="bgDark col-md-5  d-flex flex-column justify-content-center align-items-center">
-                    <h1 className={`${Style.titleBg} fw-bold  display-2`}>Voice Verse</h1>
+                <div className={`${Style.gradientBg} col-md-5  d-flex flex-column justify-content-center align-items-center`}>
+                    <img src={navlogo} className="w-75" alt="" />
                 </div>
 
                 <div className="col-md-7 d-flex align-items-center">
@@ -75,20 +76,12 @@ export default function SignUp() {
                                 <div className="d-flex mt-4">
                                     <div className="d-flex flex-column w-75 me-3">
                                         <div className="position-relative">
-                                            <input
-                                                type={visiblePass ? "text" : "password"}
-                                                placeholder="Password"
-                                                name="password"
-                                                id="password"
-                                                className={`${Style.input} w-100 me-5  `}
-                                                onChange={formik.handleChange}
-                                                onBlur={formik.handleBlur}
-                                            />
+                                            <input type={visiblePass ? "text" : "password"} placeholder="Password" name="password" id="password" className={`${Style.input} w-100 me-5`} onChange={formik.handleChange} onBlur={formik.handleBlur} />
                                             {formik.errors.password && formik.touched.password ? (
                                                 <div className="alert alert-danger mt-1 p-2 ">{formik.errors.password}</div>
                                             ) : null}
                                             <div
-                                                onClick={() => setvisiblePass((prevState) => !prevState)} // Updated onClick event handler
+                                                onClick={() => setvisiblePass((prevState) => !prevState)}
                                                 className="p-2 position-absolute top-50 translate-middle-y end-0 textBlue fs-4"
                                             >
                                                 {visiblePass ? <FaEye /> : <FaEyeSlash />}

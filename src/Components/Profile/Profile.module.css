@@ -1,3 +1,5 @@
-.img{
-    display: none;
+.contentContainer {
+  transition: transform 0.3s ease; /* Adjust timing and easing as needed */
+  overflow-x: hidden; /* Ensure content does not overflow horizontally */
+  white-space: nowrap; /* Prevent wrapping of content */
 }

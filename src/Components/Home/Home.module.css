@@ -1,4 +1,4 @@
-.textBg {
+/* .textBg {
   background: linear-gradient(to bottom right, #B8B8DC, #5756d5 , #5756d5);
   -webkit-background-clip: text;
           background-clip: text;
@@ -9,7 +9,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(to right,#B8B8DC, #5756d5);
+  background: linear-gradient(to right,#B8B8DC, #5656d57a);
   border-radius: 30px;
   overflow: hidden;
   cursor: pointer;
@@ -37,7 +37,7 @@
 .customBorder{
    padding: 1rem;
   position: relative;
-  background: linear-gradient(to right, #e3e1e2, #5756d5);
+  background: linear-gradient(to right, #e3e1e2d8, #5656d577);
   padding: 3px;
   border-radius: 10%;
 }
@@ -46,4 +46,26 @@
   color: white;
   padding: 2rem 0px;
   border-radius: 10%;
+} */
+.blur{
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
 }
+
+.bgwhite {
+  background-color: #212121;
+  background-image: radial-gradient(circle at 50% 280%, rgba(86, 86, 213, 0.55) 10%, rgba(86, 86, 213, 0.55) 40%, #212121 70%, #212121 100%);
+  background-size: cover;
+}
+.customLink {
+  transition: all 0.4s ease;
+  background-color: rgba(54, 54, 54, 0.368); 
+}
+
+.customLink:hover {
+  transform: scale(1.2);
+  background-image: linear-gradient(to bottom right, rgba(86, 86, 213, 0.273) 25%, #91549259 75%); 
+  background-color: transparent;
+ opacity: 1; 
+}
+

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Style from './Favorites.module.css'
 import axios from 'axios'
-import { starredContext } from '../../Context/StarredContext'
+import { starredContext } from '../../../Context/StarredContext'
 import { useQuery } from 'react-query'
 import { IoHeartDislike } from "react-icons/io5";
 import { toast } from 'react-hot-toast'
@@ -14,7 +14,7 @@ export default function Favorites() {
 
 const {data , refetch} = useQuery("getFavoriteVideos" , getFavoriteVideos)
   async function getFavoriteVideos() {
-    return await axios.get(`https://voice-verse-livid.vercel.app/video/favorites/`, {
+    return await axios.get(`http://ec2-51-20-141-173.eu-north-1.compute.amazonaws.com/video/favorites/`, {
       headers: { token: `${bearerToken}${localStorage.getItem("userToken")}` }
     });
 
@@ -35,7 +35,7 @@ const notify = () => toast(<>
 
 
   useEffect(() => {
-     getUserStarredVideos()
+    getFavoriteVideos()
   }, [])
 
   return <>

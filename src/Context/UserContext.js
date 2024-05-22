@@ -42,7 +42,7 @@ export default function UserContextProvider(props) {
     formData.append('title', title);
     formData.append('description', description);
     try {
-      const {data} = await axios.post(`https://voice-verse-livid.vercel.app/video/new` , formData , {
+      const {data} = await axios.post(`http://ec2-51-20-141-173.eu-north-1.compute.amazonaws.com/video/new` , formData , {
         headers: {
           "token": `${bearerToken}${localStorage.getItem("userToken")}`
         }
@@ -50,7 +50,7 @@ export default function UserContextProvider(props) {
       setvideoAddedMessage(data.message)
       // console.log(data);
     } catch (error) {
-      console.log(error);
+      console.log(error); 
     }
 
   }
@@ -64,7 +64,7 @@ export default function UserContextProvider(props) {
     const formData = new FormData();
     formData.append('image', image);
     try {
-      const { data } = await axios.post('https://voice-verse-livid.vercel.app/auth/profile/picture', formData, {
+      const { data } = await axios.post('http://ec2-51-20-141-173.eu-north-1.compute.amazonaws.com/auth/profile/picture', formData, {
         headers: {
           "token": `${bearerToken}${localStorage.getItem("userToken")}`
         }
@@ -82,7 +82,7 @@ export default function UserContextProvider(props) {
 
   async function getUserData() {
     try {
-      let { data } = await axios.get(`https://voice-verse-livid.vercel.app/auth/profile`,
+      let { data } = await axios.get(`http://ec2-51-20-141-173.eu-north-1.compute.amazonaws.com/auth/profile`,
         {
           headers: {
             "token": `${bearerToken}${localStorage.getItem("userToken")}`
@@ -100,7 +100,7 @@ export default function UserContextProvider(props) {
 
   async function deleteAccount() {
     try {
-      let {data} = await axios.delete(`https://voice-verse-livid.vercel.app/auth/account/delete` , 
+      let {data} = await axios.delete(`http://ec2-51-20-141-173.eu-north-1.compute.amazonaws.com/auth/account/delete` , 
       {
         headers:{
           "token" :  `${bearerToken}${localStorage.getItem("userToken")}`
@@ -113,8 +113,9 @@ export default function UserContextProvider(props) {
     }
   }
 
+ 
   return <>
-    <userContext.Provider value={{deleteAccount , handleImageChange, headers, bearerToken, email, userName, newImage, getUserData, handleImageUpload, userToken, setuserToken, verifyCode, setverifyCode , addNewVideo , handleVideoChange , videoAddedMessage , settitle , setdescription , description , title , video}}>
+    <userContext.Provider value={{deleteAccount , handleImageChange, headers, bearerToken, email, userName, newImage, getUserData, handleImageUpload, userToken, setuserToken, verifyCode, setverifyCode , addNewVideo , handleVideoChange , videoAddedMessage , settitle , setdescription , description , title , video }}>
       {props.children}
     </userContext.Provider>
   </>

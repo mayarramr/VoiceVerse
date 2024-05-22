@@ -15,12 +15,7 @@ export default function StarredContextProvider(props) {
     return storedVideos ? JSON.parse(storedVideos) : [];
   });
 
-  function getUserStarredVideos() {
-    return axios.get(`https://voice-verse-livid.vercel.app/video/favorites/`,
-      { headers: { "token": `${bearerToken}${localStorage.getItem("userToken")}` } })
-      .then((response) => response)
-      .catch((err) => err)
-  }
+
   const favnotify = () => toast(<>
     <div className="d-flex align-items-center fs-5 text-capitalize">
       <IoIosCheckmarkCircle className="textBlue mx-2" />
@@ -38,7 +33,7 @@ export default function StarredContextProvider(props) {
   const addToStarred = async (id) => {
     try {
       await axios.post(
-        `https://voice-verse-livid.vercel.app/video/favorites/add/${id}`,
+        `http://ec2-51-20-141-173.eu-north-1.compute.amazonaws.com/video/favorites/add/${id}`,
         {},
         { headers: { token: `${bearerToken}${localStorage.getItem("userToken")}` } }
       );
@@ -49,7 +44,7 @@ export default function StarredContextProvider(props) {
     }
   };
   const removeFromStarred = async (id) => {
-    let { data } = await axios.delete(`https://voice-verse-livid.vercel.app/video/favorites/delete/${id}`,
+    let { data } = await axios.delete(`http://ec2-51-20-141-173.eu-north-1.compute.amazonaws.com/video/favorites/delete/${id}`,
       { headers: { token: `${bearerToken}${headers.token}` } }
     )
     const updatedStarredVideos = starredVideos.filter((videoId) => videoId !== id);
@@ -60,7 +55,7 @@ export default function StarredContextProvider(props) {
 
 
   return <>
-    <starredContext.Provider value={{ bearerToken, headers, getUserStarredVideos, removeFromStarred , addToStarred , starredVideos}}>
+    <starredContext.Provider value={{ bearerToken, headers, removeFromStarred , addToStarred , starredVideos}}>
       {props.children}
     </starredContext.Provider>
   </>

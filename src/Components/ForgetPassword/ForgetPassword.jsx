@@ -18,7 +18,7 @@ export default function ForgetPassword() {
     async function sendEmail(values) {
         setloading(true)
         try {
-            let { data } = await axios.patch("https://voice-verse-livid.vercel.app/auth/forgetCode/send", values)
+            let { data } = await axios.patch("http://ec2-51-20-141-173.eu-north-1.compute.amazonaws.com/auth/forgetCode/send", values)
             console.log(data);
             setloading(false)
             navigate('/reset-code')

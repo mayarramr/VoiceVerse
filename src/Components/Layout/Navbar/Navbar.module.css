@@ -7,3 +7,7 @@
   background-color: #363636;
   transition: background-color 0.4s ease;
 }
+
+.gradientBg{
+ background: linear-gradient(to bottom , #2E3851 , #212121);
+}

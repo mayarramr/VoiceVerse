@@ -20,7 +20,7 @@ export default function ChangePassword() {
     async function changePassword(values) {
         try {
             const { data } = await axios.patch(
-                'https://voice-verse-livid.vercel.app/auth/resetPassword',
+                'http://ec2-51-20-141-173.eu-north-1.compute.amazonaws.com/auth/resetPassword',
                 values,
                 {
                     forgetCode: { verifyCode }

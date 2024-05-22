@@ -1,15 +1,28 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import Style from './Profile.module.css'
 import { userContext } from '../../Context/UserContext'
-import EditProfile from '../EditProfile/EditProfile'
-import { useNavigate } from 'react-router-dom'
-import Favorites from '../Favorites/Favorites'
-
+import EditProfile from './EditProfile/EditProfile'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import Favorites from './Favorites/Favorites'
+import UserVideos from './UserVideos/UserVideos'
+import DubbingResults from '../Dubbing/DubbingResults/DubbingResults'
+import { MdDashboard } from "react-icons/md";
+import { FaHeart } from 'react-icons/fa'
+import { HiTranslate } from 'react-icons/hi'
+import { TbWaveSine } from 'react-icons/tb'
+import { PiWaveformBold } from 'react-icons/pi'
+import ClonningResult from '../Clonning/ClonningResult/ClonningResult'
 
 export default function Profile() {
-  let { email, userName, newImage, deleteAccount } = useContext(userContext)
+  let { email, userName, newImage, deleteAccount, getUserVideos } = useContext(userContext)
   const navigate = useNavigate()
-  const [isOpen, setisOpen] = useState(false)
+  const location = useLocation()
+  const [activeView, setActiveView] = useState('favorites') // New state variable
+
+  const handleViewChange = (view) => (event) => {
+    event.preventDefault() // Prevent default link behavior
+    setActiveView(view)
+  }
 
   const deleteUserAccount = async () => {
     await deleteAccount()
@@ -22,7 +35,7 @@ export default function Profile() {
   return <>
     <div className="bgDark vh-100 pt-5">
       <div className="mt-5 ">
-        <div className="row justify-content-center">
+        <div className="row justify-content-center ">
           <div className="col-md-4 d-flex justify-content-evenly align-items-center ">
             <div className="position-relative">
               <img src={newImage} className="rounded-pill  borderBlue border-4" style={{ width: '170px', height: '170px' }} />
@@ -58,7 +71,32 @@ export default function Profile() {
           </div>
           <EditProfile />
         </div>
-        <Favorites />
+        <div className="border-bottom w-75 mx-auto my-4 text-white">
+          <div className="d-flex justify-content-between w-75 mx-auto">
+            <button className={` btn text-decoration-none text-white`} onClick={handleViewChange('favorites')}>
+              <h2 className={`${activeView === 'favorites' ? 'textBlue' : 'text-white'}`}><FaHeart /></h2>
+            </button>
+            <button className={` btn text-decoration-none text-white`} onClick={handleViewChange('uservideos')}>
+              <h2 className={`${activeView === 'uservideos' ? 'textBlue' : 'text-white'} fs-1`}><MdDashboard /></h2>
+            </button>
+            <button className={` btn text-decoration-none text-white`} onClick={handleViewChange('dubbing-results')}>
+              <h2 className={`${activeView === 'dubbing-results' ? 'textBlue' : 'text-white'}`}><HiTranslate /></h2>
+            </button>
+            <button className={` btn text-decoration-none text-white`} onClick={handleViewChange('clonning-results')}>
+              <h2 className={`${activeView === 'clonning-results' ? 'textBlue' : 'text-white'}`}><TbWaveSine /></h2>
+            </button>
+            <button className={` btn text-decoration-none text-white`} onClick={handleViewChange('avatar-results')}>
+              <h2 className={`${activeView === 'avatar-results' ? 'textBlue' : 'text-white'}`}><PiWaveformBold /></h2>
+            </button>
+          </div>
+        </div>
+        <div>
+          {activeView === 'favorites' && <Favorites />}
+          {activeView === 'uservideos' && <UserVideos />}
+          {activeView === 'dubbing-results' && <DubbingResults />}
+          {activeView === 'clonning-results' && <ClonningResult />}
+          {activeView === 'avatar-results' && <DubbingResults />}
+        </div>
       </div>
     </div>
   </>

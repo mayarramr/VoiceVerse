@@ -35,3 +35,7 @@
     box-shadow: -2px -2px 8px 1px #B8B8DC, 2px 2px 8px 1px #5756d5;
   }
 }
+
+.gradientBg{
+ background-image: radial-gradient(circle at -5% -60%, #915492 8% , #212121 60%, #465fa3 140%);
+}

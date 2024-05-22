@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import Style from './EditProfile.module.css'
 import { FaCamera } from "react-icons/fa";
-import { userContext } from '../../Context/UserContext'
+import { userContext } from '../../../Context/UserContext'
 import { Bars } from 'react-loader-spinner';
 import { useFormik } from 'formik';
 import axios from 'axios';
@@ -37,7 +37,7 @@ export default function EditProfile() {
     async function changeUsername(values) {
         setusernameHandled(true)
         try {
-            let { data } = await axios.patch(`https://voice-verse-livid.vercel.app/auth/username/edit`, values,
+            let { data } = await axios.patch(`http://ec2-51-20-141-173.eu-north-1.compute.amazonaws.com/auth/username/edit`, values,
                 {
                     headers: {
                         "token": `${bearerToken}${localStorage.getItem("userToken")}`

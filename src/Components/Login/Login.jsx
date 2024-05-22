@@ -15,7 +15,7 @@ import { useMediaQuery } from 'react-responsive';
 
 
 export default function Login() {
-    const isScreenSmall = useMediaQuery({minWidth:0 , maxWidth:768})
+    const isScreenSmall = useMediaQuery({ minWidth: 0, maxWidth: 768 })
     let { setuserToken, userToken } = useContext(userContext)
     const [error, setError] = useState(null)
     const [loading, setLoading] = useState(false)
@@ -25,7 +25,7 @@ export default function Login() {
     async function submitLogin(values) {
         setLoading(true)
         try {
-            const { data } = await axios.post('https://voice-verse-livid.vercel.app/auth/login', values)
+            const { data } = await axios.post('http://ec2-51-20-141-173.eu-north-1.compute.amazonaws.com/auth/login', values)
             console.log(data);
             localStorage.setItem("userToken", data.token)
             setuserToken(data.token)
@@ -33,7 +33,7 @@ export default function Login() {
             navigate('/home')
         } catch (err) {
             setLoading(false)
-            console.log(err);
+            // console.log(err);
             setError(err.response.data.message)
 
         }
@@ -69,9 +69,8 @@ export default function Login() {
             :
             <>
                 <div className="row position-fixed top-0 bottom-0 end-0 start-0" >
-                    <div className="bgDark col-md-5  d-flex flex-column justify-content-center align-items-center">
+                    <div className={`${Style.gradientBg} col-md-5  d-flex flex-column justify-content-center align-items-center`}>
                         <img src={navlogo} className="w-75" alt="" />
-                        {/* <h1 className={`${Style.titleBg} fw-bold  display-2`}>Voice Verse</h1> */}
                     </div>
 
                     <div className="col-md-7 d-flex align-items-center">
@@ -100,7 +99,7 @@ export default function Login() {
                                 </div>
                             </form>
                             <div className={`${isScreenSmall ? "flex-column" : ""} d-flex align-items-center justify-content-around my-3`}>
-                               
+
                                 <div className={`${isScreenSmall ? "flex-column" : ""} d-flex align-items-center`}>
                                     <p className="m-0">Don't have an account yet ?</p>
                                     <Link to={'/signup'}><button className="btn textBlue borderBlue rounded-5 mx-2">Register</button></Link>

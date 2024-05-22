@@ -20,7 +20,7 @@ export default function ResetCode() {
     async function resetCode(values) {
         try {
             setLoading(true)
-            const { data } = await axios.post(`https://voice-verse-livid.vercel.app/auth/forgetCode/set`, values)
+            const { data } = await axios.post(`http://ec2-51-20-141-173.eu-north-1.compute.amazonaws.com/auth/forgetCode/set`, values)
             console.log(data);
             setverifyCode(data.results)
             navigate('/change-password')

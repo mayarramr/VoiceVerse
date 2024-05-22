@@ -1,32 +1,30 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
-import Style from './CreateUrSong.module.css'
+import Style from './Reels.module.css'
 import { userContext } from '../../Context/UserContext';
 import { useQuery } from 'react-query';
 import axios from 'axios';
 import { starredContext } from '../../Context/StarredContext';
 import { Bars } from 'react-loader-spinner';
 import { FaHeart } from "react-icons/fa";
-import { toast } from 'react-hot-toast';
 import { useMediaQuery } from 'react-responsive';
 import AwesomeSlider from 'react-awesome-slider';
 import 'react-awesome-slider/dist/styles.css';
-import { IoIosCheckmarkCircle } from 'react-icons/io';
 
 export default function Home() {
   const isScreenSmall = useMediaQuery({ minWidth: 0, maxWidth: 768 })
   let { getUserData } = useContext(userContext)
-  let { bearerToken ,starredVideos , addToStarred } = useContext(starredContext)
+  let { bearerToken, starredVideos, addToStarred } = useContext(starredContext)
   const { data, isLoading } = useQuery('allVideos', getAllVideos);
- 
 
-  async function getAllVideos() {
-    return await axios.get('https://voice-verse-livid.vercel.app/video/all', {
+
+   function getAllVideos() {
+    return axios.get('http://ec2-51-20-141-173.eu-north-1.compute.amazonaws.com/video/all', {
       headers: { token: `${bearerToken}${localStorage.getItem("userToken")}` }
     });
   }
 
 
-  async function handleFav(id){
+  async function handleFav(id) {
     await addToStarred(id)
   }
   useEffect(() => {
@@ -68,7 +66,7 @@ export default function Home() {
                         <div className="position-absolute bottom-0 my-5 end-0 w-100 d-flex justify-content-between align-items-center">
                           <div className="d-flex flex-column mx-3">
                             <div className="d-flex align-items-center justify-content-between">
-                              <img src={video.user?.profileImage.url} className="rounded-pill" style={{ width: '30px' }} alt="" />
+                              <img src={video.user?.profileImage.url} className="rounded-pill" style={{ width: '35px' , height:'35px' }} alt="" />
                               <p className="text-white m-0 mx-2 text-capitalize">{video.user?.userName}</p>
                             </div>
                             <div className="">
