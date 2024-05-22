@@ -25,7 +25,7 @@ export default function Login() {
     async function submitLogin(values) {
         setLoading(true)
         try {
-            const { data } = await axios.post('https://ec2-51-20-141-173.eu-north-1.compute.amazonaws.com/auth/login', values)
+            const { data } = await axios.post('http://ec2-51-20-141-173.eu-north-1.compute.amazonaws.com/auth/login', values)
             console.log(data);
             localStorage.setItem("userToken", data.token)
             setuserToken(data.token)
