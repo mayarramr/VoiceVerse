@@ -22,7 +22,7 @@ export default function CreateUrSong() {
 
   return <>
 
-    <div className={`${Style.bgwhite} ${isScreenSmall ? " py-4 " : "overflow-hidden"} bgDark vh-100 `}>
+    <div className={`${Style.bgwhite} ${isScreenSmall ? " py-4 " : "overflow-hidden"} bgDark `}>
       <div className={` container h-100 py-4 mt-5 d-flex flex-column justify-content-center align-items-center `}>
         <img src={navlogo} className={`${isScreenSmall ? "w-100" : "w-50"} z-3`} alt="" />
         <div className="row justify-content-evenly my-4 w-100">

@@ -2,8 +2,10 @@ import React, { useContext, useRef, useState } from 'react'
 import Style from './AddNewVideo.module.css'
 import { userContext } from '../../Context/UserContext'
 import { Bars } from 'react-loader-spinner'
+import { useMediaQuery } from 'react-responsive'
 
 export default function AddNewVideo() {
+    const isScreenSmall = useMediaQuery({ minWidth: 0, maxWidth: 768 })
     let { addNewVideo, handleVideoChange, videoAddedMessage, settitle, setdescription, description, title, video } = useContext(userContext)
     const [loading, setloading] = useState(false)
     let inputRef = useRef()
@@ -31,7 +33,7 @@ export default function AddNewVideo() {
                     </div>
                     <div className="modal-body my-4 fs-5 text-white">
                         {videoAddedMessage ? <><div className="alert alert-success text-capitalize text-center">{videoAddedMessage}</div></> : ''}
-                        <div className="d-flex align-items-center w-50 justify-content-between">
+                        <div className="d-flex align-items-center justify-content-between">
                             <p className="m-0">Video</p>
                             <button className="btn bgBlue text-white" onClick={handleChooseVideo}>Choose Video</button>
                             <input type="file" ref={inputRef} style={{ display: "none" }} onChange={handleChangeVideo} />

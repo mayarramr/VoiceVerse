@@ -9,9 +9,11 @@ import { Link } from 'react-router-dom';
 import { AiFillAudio } from "react-icons/ai";
 import { FaRegCheckCircle, FaMicrophoneAltSlash } from "react-icons/fa";
 import { HiTranslate } from 'react-icons/hi';
+import { useMediaQuery } from 'react-responsive';
 
 export default function Clonning() {
     const { bearerToken } = useContext(userContext);
+    const isScreenSmall = useMediaQuery({ minWidth: 0, maxWidth: 768 })
     const [title, setTitle] = useState('');
     const [textToSpeech, setTextToSpeech] = useState('');
     const [isLoading, setIsLoading] = useState(false);
@@ -101,12 +103,12 @@ export default function Clonning() {
                                     <div className="col-md-10">
                                         <div className="d-flex align-items-center justify-content-center text-white">
                                             <div className="my-3 d-flex align-items-center w-100">
-                                                <div className="d-flex align-items-center w-75 mx-auto justify-content-between">
-                                                    <button onClick={startRecording} disabled={isRecording} className="btn bg-white btn-lg text-black d-flex align-items-center">
+                                                <div className={` ${isScreenSmall ? " justify-content-between" : "justify-content-evenly"} d-flex align-items-center w-100 `}>
+                                                    <button onClick={startRecording} disabled={isRecording} className={`${isScreenSmall ? "" : "btn-lg"} btn bg-white text-black d-flex align-items-center`}>
                                                         <AiFillAudio />
                                                         <p className="m-0">Start recording</p>
                                                     </button>
-                                                    <button className="btn btn-lg bg-white text-black d-flex align-items-center" onClick={stopRecording} disabled={!isRecording}>
+                                                    <button className={`${isScreenSmall ? "" : "btn-lg"} btn bg-white text-black d-flex align-items-center`} onClick={stopRecording} disabled={!isRecording}>
                                                         <FaMicrophoneAltSlash />
                                                         <p className="m-0">Stop recording</p>
                                                     </button>
@@ -167,7 +169,7 @@ export default function Clonning() {
                 </div>
                 <div className="my-3">
                     <h4 className="text-white">You can also try</h4>
-                    <div className="d-flex">
+                    <div className={`${isScreenSmall ? "flex-column" : ""} d-flex`}>
                         <Link to="#" className="text-decoration-none">
                             <div className={`${Style.hovering} rounded-3 p-3 text-white`}>
                                 <div className="d-flex align-items-center">
@@ -180,7 +182,7 @@ export default function Clonning() {
                             </div>
                         </Link>
                         <Link to="#" className="text-decoration-none">
-                            <div className={`${Style.hovering} rounded-3 p-3 text-white mx-4`}>
+                            <div className={`${Style.hovering} rounded-3 p-3 text-white  ${isScreenSmall ?" my-4" : "mx-4 "}`}>
                                 <div className="d-flex align-items-center">
                                     <HiTranslate className="display-2 mx-1" />
                                     <div>

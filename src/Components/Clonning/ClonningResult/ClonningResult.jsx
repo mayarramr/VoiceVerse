@@ -4,10 +4,12 @@ import { useQuery } from 'react-query';
 import axios from 'axios';
 import { userContext } from '../../../Context/UserContext';
 import { FaPause, FaPlay } from "react-icons/fa";
+import { useMediaQuery } from 'react-responsive';
 
 export default function ClonningResults() {
     let { bearerToken } = useContext(userContext);
 
+    const isScreenSmall = useMediaQuery({ minWidth: 0, maxWidth: 768 })
     const { data } = useQuery("getUserVideos", getUserVideos);
 
     async function getUserVideos() {
@@ -49,8 +51,8 @@ export default function ClonningResults() {
     };
 
     return (
-       <div className="d-flex justify-content-center">
-         <div className="row my-5 w-75 gy-3">
+       <div className="d-flex justify-content-center bgDark">
+         <div className={`${isScreenSmall ? "mx-2 py-3" : "my-5 w-75"} row gy-3`}>
             {data?.data?.clonedAudio?.map((audio, index) => (
                 <div key={audio._id} className="col-md-4">
                     <div className={`${Style.audioPlayer}`}>

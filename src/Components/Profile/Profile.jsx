@@ -12,15 +12,16 @@ import { HiTranslate } from 'react-icons/hi'
 import { TbWaveSine } from 'react-icons/tb'
 import { PiWaveformBold } from 'react-icons/pi'
 import ClonningResult from '../Clonning/ClonningResult/ClonningResult'
+import { useMediaQuery } from 'react-responsive'
 
 export default function Profile() {
-  let { email, userName, newImage, deleteAccount, getUserVideos } = useContext(userContext)
+  const isScreenSmall = useMediaQuery({ minWidth: 0, maxWidth: 768 })
+  let { email, userName, newImage, deleteAccount } = useContext(userContext)
   const navigate = useNavigate()
-  const location = useLocation()
   const [activeView, setActiveView] = useState('favorites') // New state variable
 
   const handleViewChange = (view) => (event) => {
-    event.preventDefault() // Prevent default link behavior
+    event.preventDefault() 
     setActiveView(view)
   }
 
@@ -33,12 +34,12 @@ export default function Profile() {
 
 
   return <>
-    <div className="bgDark vh-100 pt-5">
+    <div className="bgDark pt-5">
       <div className="mt-5 ">
         <div className="row justify-content-center ">
-          <div className="col-md-4 d-flex justify-content-evenly align-items-center ">
+          <div className={`${isScreenSmall ? "justify-content-between" : "justify-content-evenly"} col-md-4 d-flex  align-items-center `}>
             <div className="position-relative">
-              <img src={newImage} className="rounded-pill  borderBlue border-4" style={{ width: '170px', height: '170px' }} />
+              <img src={newImage} className="rounded-pill  borderBlue border-4" style={{ width: isScreenSmall ? "100px" :"170px" , height: isScreenSmall ? "100px" :"170px" }} />
               <div>
               </div>
             </div>
@@ -71,8 +72,8 @@ export default function Profile() {
           </div>
           <EditProfile />
         </div>
-        <div className="border-bottom w-75 mx-auto my-4 text-white">
-          <div className="d-flex justify-content-between w-75 mx-auto">
+        <div className={`${ isScreenSmall ? "" : "w-75"} border-bottom mx-auto my-4 text-white`}>
+          <div className={`${isScreenSmall? "justify-content-evenly" : "mx-auto w-75 justify-content-between"} d-flex  `}>
             <button className={` btn text-decoration-none text-white`} onClick={handleViewChange('favorites')}>
               <h2 className={`${activeView === 'favorites' ? 'textBlue' : 'text-white'}`}><FaHeart /></h2>
             </button>
@@ -85,17 +86,13 @@ export default function Profile() {
             <button className={` btn text-decoration-none text-white`} onClick={handleViewChange('clonning-results')}>
               <h2 className={`${activeView === 'clonning-results' ? 'textBlue' : 'text-white'}`}><TbWaveSine /></h2>
             </button>
-            <button className={` btn text-decoration-none text-white`} onClick={handleViewChange('avatar-results')}>
-              <h2 className={`${activeView === 'avatar-results' ? 'textBlue' : 'text-white'}`}><PiWaveformBold /></h2>
-            </button>
           </div>
         </div>
-        <div>
+        <div className="bgDark py-2 vh-100">
           {activeView === 'favorites' && <Favorites />}
           {activeView === 'uservideos' && <UserVideos />}
           {activeView === 'dubbing-results' && <DubbingResults />}
           {activeView === 'clonning-results' && <ClonningResult />}
-          {activeView === 'avatar-results' && <DubbingResults />}
         </div>
       </div>
     </div>
